@@ -190,6 +190,13 @@
                     </li>
 
                     <li>
+                        <a href="{{route('mains.index')}}">
+                            <i class="ri-layout-3-line"></i>
+                            <span>Məhsullar</span>
+                        </a>
+                    </li>
+
+                    <li>
                         <a href="{{route('services.index')}}">
                             <i class="ri-layout-3-line"></i>
                             <span>Xidmətlər</span>

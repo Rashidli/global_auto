@@ -23,28 +23,30 @@
                                         <tr>
                                             <th>№</th>
                                             <th>Brand</th>
+                                            <th>Məhsulları</th>
                                             <th>Status</th>
                                             <th>Əməliyyat</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($newbrands as $newbrand)
+                                            @foreach($newbrands as $newbrand)
 
-                                            <tr>
-                                                <th scope="row">{{$newbrand->id}}</th>
-                                                <td><img src="{{asset('storage/'.$newbrand->image)}}" style="width: 100px; height: 50px" alt=""></td>
-                                                <td>{{$newbrand->is_active == true ? 'Active' : 'Deactive'}}</td>
-                                                <td>
-                                                    <a href="{{route('newbrands.edit',$newbrand->id)}}" class="btn btn-primary" style="margin-right: 15px" >Edit</a>
-                                                    <form action="{{route('newbrands.destroy', $newbrand->id)}}" method="post" style="display: inline-block">
-                                                        {{ method_field('DELETE') }}
-                                                        @csrf
-                                                        <button onclick="confirm('Məlumatın silinməyin təsdiqləyin')" type="submit" class="btn btn-danger">Delete</button>
-                                                    </form>
-                                                </td>
-                                            </tr>
+                                                <tr>
+                                                    <th scope="row">{{$newbrand->id}}</th>
+                                                    <td><img src="{{asset('storage/'.$newbrand->image)}}" style="width: 100px; height: 50px" alt=""></td>
+                                                    <td><a href="{{route('oilproducts.index', $newbrand->id)}}" class="btn btn-primary">Məhsullar</a></td>
+                                                    <td>{{$newbrand->is_active == true ? 'Active' : 'Deactive'}}</td>
+                                                    <td>
+                                                        <a href="{{route('newbrands.edit',$newbrand->id)}}" class="btn btn-primary" style="margin-right: 15px" >Edit</a>
+                                                        <form action="{{route('newbrands.destroy', $newbrand->id)}}" method="post" style="display: inline-block">
+                                                            {{ method_field('DELETE') }}
+                                                            @csrf
+                                                            <button onclick="confirm('Məlumatın silinməyin təsdiqləyin')" type="submit" class="btn btn-danger">Delete</button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
 
-                                        @endforeach
+                                            @endforeach
 
                                         </tbody>
                                     </table>

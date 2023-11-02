@@ -1376,21 +1376,6 @@
         position: unset;
         margin-top: 25px;
     }
-    .brandsForPhone-boxes {
-        display: grid;
-        grid-template-columns: repeat(1,1fr);
-        column-gap: 150px;
-        row-gap: 30px;
-    }
-    .brandsForPhone-boxes .brandsForPhone-boxItem .brandsPhone .phoneNumber p {
-        color: #fff;
-        font-size: 10px;
-    }
-    .brandsForPhone-boxes .brandsForPhone-boxItem .brandsPhone .phoneNumber svg {
-        width: 15px;
-        height: 15px;
-    }
-
 }
 
 @media only screen and (min-width: 576px) and (max-width: 767px) {
@@ -4020,8 +4005,15 @@
 
 /* Mobile and iPad Navbar */
 @media only screen and (max-width: 991px) {
-    .shop-map{
-        grid-template-columns: repeat(1,1fr);
+    .shop-hero{
+        flex-direction: column;
+    }
+    .brandsForPhone-boxes{
+        width: 100%;
+    }
+    .shop-hero .shop-details{
+        width: 100%;
+        margin-top: 15px;
     }
     .navbar-area {
         background-color: #ffffff;

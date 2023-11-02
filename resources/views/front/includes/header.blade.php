@@ -128,6 +128,12 @@
                         </li>
 
                         <li class="nav-item">
+                            <a href="{{route('all_products')}}" class="nav-link ">
+                                {{$words['products']->translate(app()->getLocale())->word}}
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
                             <a href="javascript: void(0)" class="nav-link dropdown-toggle">
                                 {{$words['services']->translate(app()->getLocale())->word}}
                             </a>

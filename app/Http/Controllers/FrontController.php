@@ -6,11 +6,14 @@ use App\Models\About;
 use App\Models\ApplyCredit;
 use App\Models\Blog;
 use App\Models\Brand;
+use App\Models\Brend;
 use App\Models\Card;
 use App\Models\ContactForm;
 use App\Models\Feature;
 use App\Models\Hero;
+use App\Models\Main;
 use App\Models\NewBrand;
+use App\Models\OilProduct;
 use App\Models\Product;
 use App\Models\Service;
 use App\Models\Shop;
@@ -23,7 +26,6 @@ class FrontController extends Controller
     {
 
         session()->put('lang', $locale);
-
         return redirect()->back();
 
     }
@@ -38,8 +40,9 @@ class FrontController extends Controller
         $newbrands = NewBrand::where('is_active', true)->orderBy('id','asc')->get();
         $testimonials = Testimonial::where('is_active', true)->orderBy('id','desc')->get();
         $blogs = Blog::where('is_active', true)->orderBy('id','desc')->limit(3)->get();
+        $mains = Main::where('is_active', true)->orderBy('id','asc')->get();
 
-        return view('front.home', compact('hero', 'features', 'services','brands','testimonials','blogs','newbrands'));
+        return view('front.home', compact('hero', 'features', 'services','brands','testimonials','blogs','newbrands','mains'));
 
     }
 
@@ -72,14 +75,15 @@ class FrontController extends Controller
 
     public function brands()
     {
-        $brands = Brand::where('is_active', true)->orderBy('id','desc')->get();
+        $brands = Brand::where('is_active', true)->orderBy('id','asc')->get();
+        $newbrands = NewBrand::where('is_active', true)->orderBy('id','asc')->get();
 
-        return view('front.brands', compact('brands'));
+        return view('front.brands', compact('brands','newbrands'));
     }
 
     public function shops()
     {
-        $shops = Shop::with('images')->where('is_active', true)->get();
+        $shops = Shop::where('is_active', true)->get();
         return view('front.shops', compact('shops'));
     }
 
@@ -128,7 +132,25 @@ class FrontController extends Controller
 
     public function products($id)
     {
-        $products = Product::orderBy('id','desc')->where('brand_id', $id)->get();
+        $products = Product::orderBy('id','asc')->where([['brand_id', $id], ['is_active', true]])->get();
         return view('front.products', compact('products'));
+    }
+
+    public function oilproducts($id)
+    {
+        $oilproducts = OilProduct::orderBy('id','asc')->where([['brand_id', $id], ['is_active', true]])->get();
+        return view('front.oilproducts', compact('oilproducts'));
+    }
+
+    public function all_brends($id)
+    {
+        $all_brends = Brend::orderBy('id','asc')->where([['main_id', $id], ['is_active', true]])->get();
+        return view('front.all_brends', compact('all_brends'));
+    }
+
+    public function all_products()
+    {
+        $all_products = Main::where('is_active', true)->orderBy('id','asc')->get();
+        return view('front.all_products', compact('all_products'));
     }
 }

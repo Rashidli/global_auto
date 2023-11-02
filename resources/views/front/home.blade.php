@@ -49,6 +49,29 @@
 </div>
 <!-- =========== Why-US End ============ -->
 
+
+<!-- =========== Our services Start ============ -->
+
+<div class="ourService container">
+    <div class="section-title mb-20">
+        <h2>{{$words['products']->translate(app()->getLocale())->word}}</h2>
+    </div>
+    <div class="ourService-boxes mt-30">
+
+        @foreach($mains as $main)
+            <a href="{{route('all_brends' , $main->id)}}" class="ourService-box">
+                <img src="{{asset('storage/' . $main->image)  }}" alt="">
+                <h5>{{$main->title}}</h5>
+            </a>
+        @endforeach
+
+    </div>
+</div>
+<br>
+<br>
+
+<!-- =========== Our services End ============ -->
+
 <!-- =========== Our services Start ============ -->
 
 <div class="ourService container">
@@ -95,7 +118,7 @@
 {{--    </div>--}}
     <div class="carSpare-brands-boxes mt-30">
         @foreach($newbrands as $brand)
-            <a href="{{route('brand_products' , $brand->id)}}" class="carSpare-brands-box">
+            <a href="{{route('oil_products' , $brand->id)}}" class="carSpare-brands-box">
                 <img src="{{ asset('storage/' . $brand->image) }}" alt="">
             </a>
         @endforeach
